@@ -1,0 +1,33 @@
+/run/numberOfThreads 1
+
+/testhadr/phys/thermalScattering true
+
+/run/initialize
+
+/vis/open OGL
+/vis/viewer/set/viewpointVector 0 0 0
+/vis/drawVolume
+/vis/viewer/set/autoRefresh true
+/vis/scene/add/trajectories smooth
+/vis/scene/add/eventID
+/vis/scene/endOfEventAction accumulate
+/vis/geometry/set/colour logicWorld 0 1 0 1 0.2
+/vis/geometry/set/colour logicMod 0 1 0 0 0.2
+/vis/geometry/set/colour logicUni 0 0 1 0 0.2
+/vis/geometry/set/colour logicCyl 0 1 1 0 0.2
+/vis/geometry/set/colour logicVac 0 0 0 0 0.2
+/vis/viewer/set/style surface
+/vis/filtering/trajectories/create/particleFilter
+/vis/filtering/trajectories/particleFilter-0/add neutron
+/vis/filtering/trajectories/particleFilter-0/add gamma
+/vis/filtering/trajectories/particleFilter-0/add triton
+/vis/filtering/trajectories/particleFilter-0/add e-
+/vis/filtering/trajectories/particleFilter-0/add proton
+/vis/filtering/trajectories/particleFilter-0/add alpha
+/vis/modeling/trajectories/create/drawByParticleID
+/vis/modeling/trajectories/drawByParticleID-0/set neutron blue
+/vis/modeling/trajectories/drawByParticleID-0/set gamma white
+/vis/modeling/trajectories/drawByParticleID-0/set triton red
+/vis/modeling/trajectories/drawByParticleID-0/set e- yellow
+/vis/modeling/trajectories/drawByParticleID-0/set proton red
+/vis/modeling/trajectories/drawByParticleID-0/set alpha green

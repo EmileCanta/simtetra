@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "PlotEnergy.C": "cpp",
+        "PlotEfficiencies.C": "cpp"
+    }
+}
