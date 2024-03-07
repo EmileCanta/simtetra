@@ -1,0 +1,4 @@
+/Users/cantacuzene/simtetra/simu/build/CMakeFiles/simTetra.dir
+/Users/cantacuzene/simtetra/simu/build/CMakeFiles/SimulationTetra.dir
+/Users/cantacuzene/simtetra/simu/build/CMakeFiles/edit_cache.dir
+/Users/cantacuzene/simtetra/simu/build/CMakeFiles/rebuild_cache.dir

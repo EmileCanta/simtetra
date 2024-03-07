@@ -33,9 +33,9 @@ int main(int argc, char** argv)
 	runManager->SetUserInitialization(new MyPhysicsList());
 	runManager->SetUserInitialization(new MyActionInitialization());
 
-	G4ParticleHPManager::GetInstance()->SetSkipMissingIsotopes( false );
+	G4ParticleHPManager::GetInstance()->SetSkipMissingIsotopes( true );
 	G4ParticleHPManager::GetInstance()->SetDoNotAdjustFinalState( true );
-	G4ParticleHPManager::GetInstance()->SetUseOnlyPhotoEvaporation( true );
+	G4ParticleHPManager::GetInstance()->SetUseOnlyPhotoEvaporation( false );
 	G4ParticleHPManager::GetInstance()->SetNeglectDoppler( false );
 	G4ParticleHPManager::GetInstance()->SetProduceFissionFragments( false );
 	G4ParticleHPManager::GetInstance()->SetUseWendtFissionModel( false );

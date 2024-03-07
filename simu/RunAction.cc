@@ -82,7 +82,7 @@ void MyRunAction::BeginOfRunAction(const G4Run* run)
     std::stringstream strRunID;
     strRunID << runID;
     
-    man->OpenFile("../../runs/output"+strRunID.str()+".root");
+    man->OpenFile("../../../data/simtetra/output"+strRunID.str()+".root");
     
 }
 

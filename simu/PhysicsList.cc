@@ -17,14 +17,14 @@ MyPhysicsList::MyPhysicsList()
     SetVerboseLevel(1);
 
     
-    RegisterPhysics(new G4DecayPhysics());
+    /*RegisterPhysics(new G4DecayPhysics());
     RegisterPhysics(new G4RadioactiveDecayPhysics());
 	RegisterPhysics(new G4HadronElasticPhysicsHP());
     RegisterPhysics(new G4HadronPhysicsQGSP_BIC_HP());
 
     RegisterPhysics(new GammaNuclearPhysics("gamma"));
     RegisterPhysics(new G4IonElasticPhysics());
-    RegisterPhysics(new G4IonPhysicsXS());
+    RegisterPhysics(new G4IonPhysicsXS());*/
 
     RegisterPhysics(new G4EmPenelopePhysics());
     RegisterPhysics( new NeutronHPphysics("neutronHP"));  

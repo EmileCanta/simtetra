@@ -1,0 +1,3 @@
+/detector/Pressure {pressure}
+/run/reinitializeGeometry
+/run/beamOn 1000000
