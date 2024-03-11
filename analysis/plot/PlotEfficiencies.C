@@ -48,11 +48,11 @@ void PlotEfficiencies()
 		infile4 >> value4;
 		infile5 >> value5;
 		
-		value1 = (value1/1000)*100;
-		value2 = (value2/1000)*100;
-		value3 = (value3/1000)*100;
-		value4 = (value4/1000)*100;
-		value5 = (value5/1000)*100;
+		value1 = (value1/10000)*100;
+		value2 = (value2/10000)*100;
+		value3 = (value3/10000)*100;
+		value4 = (value4/10000)*100;
+		value5 = (value5/10000)*100;
 		
 		if(infile1.eof()) break;
 		if(infile2.eof()) break;

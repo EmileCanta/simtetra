@@ -27,7 +27,7 @@ MyPhysicsList::MyPhysicsList()
     RegisterPhysics(new G4IonPhysicsXS());*/
 
     RegisterPhysics(new G4EmPenelopePhysics());
-    RegisterPhysics( new NeutronHPphysics("neutronHP"));  
+    RegisterPhysics( new NeutronHPphysics("neutronHP"));
 
 }
 
