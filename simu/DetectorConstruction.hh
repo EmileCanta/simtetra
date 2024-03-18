@@ -22,16 +22,19 @@ public :
 	MyDetectorConstruction();
 	~MyDetectorConstruction();
     
-    G4LogicalVolume *GetScoringVolume() const { return fScoringVolume; }
+    G4LogicalVolume *GetScoringVolumeOne() const { return fScoringVolumeOne; }
+    G4LogicalVolume *GetScoringVolumeTwo() const { return fScoringVolumeTwo; }
+    G4LogicalVolume *GetScoringVolumeThree() const { return fScoringVolumeThree; }
+    G4LogicalVolume *GetScoringVolumeFour() const { return fScoringVolumeFour; }
     
     G4LogicalVolume *GetSPVolume() const { return fSPVolume; }
 	
 	virtual G4VPhysicalVolume *Construct();
     
 private:
-    G4LogicalVolume *logicCell;
+    G4LogicalVolume *logicCellOne, *logicCellTwo, *logicCellThree, *logicCellFour;
 	
-    G4LogicalVolume *fScoringVolume;
+    G4LogicalVolume *fScoringVolumeOne, *fScoringVolumeTwo, *fScoringVolumeThree, *fScoringVolumeFour;
     
     G4LogicalVolume *logicSP;
     
@@ -49,7 +52,7 @@ private:
     
     G4Isotope *he3Iso;
     G4Element *he3;
-    G4Material *co2, *gasMix, *realVac, *air, *modMat, *bore, *borPol, *mod, *plasticMat, *steel, *plexi;
+    G4Material *co2, *gasMixOne, *gasMixTwo, *gasMixThree, *gasMixFour, *realVac, *air, *modMat, *bore, *borPol, *mod, *plasticMat, *steel, *plexi;
     
 };
 

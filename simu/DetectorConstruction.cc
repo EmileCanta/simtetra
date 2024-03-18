@@ -26,19 +26,44 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	he3 = new G4Element("he3", "he3", 1);
 	
 	he3->AddIsotope(he3Iso, 100.*perCent);
+
+    //Cell gas mixture
+    G4double    temperatureCell = 293.*kelvin,
+                molar_constant = CLHEP::Avogadro*CLHEP::k_Boltzmann;
 	
-	//Cell gas mixture
-	G4double    pressureCell = 7.*atmosphere,
-                temperatureCell = 293.*kelvin,
-                molar_constant = CLHEP::Avogadro*CLHEP::k_Boltzmann,
-                densityCell = (atomicMass*pressureCell)/(temperatureCell*molar_constant);
+	G4double    pressureCellOne = 4.8*atmosphere,
+                densityCellOne = (atomicMass*pressureCellOne)/(temperatureCell*molar_constant);
+
+    G4double    pressureCellTwo = 5.58*atmosphere,
+                densityCellTwo = (atomicMass*pressureCellTwo)/(temperatureCell*molar_constant);
+
+    G4double    pressureCellThree = 5.76*atmosphere,
+                densityCellThree = (atomicMass*pressureCellThree)/(temperatureCell*molar_constant);
+
+    G4double    pressureCellFour = 5.78*atmosphere,
+                densityCellFour = (atomicMass*pressureCellFour)/(temperatureCell*molar_constant);
                 
     co2 = nist->FindOrBuildMaterial("G4_CARBON_DIOXIDE");
 		        
-	gasMix = new G4Material("he3Gas", densityCell,	2, kStateGas, temperatureCell, pressureCell);
+	gasMixOne = new G4Material("he3Gas", densityCellOne,	2, kStateGas, temperatureCell, pressureCellOne);
     
-    gasMix->AddElement(he3, 99.*perCent);
-    gasMix->AddMaterial(co2, 1.*perCent);
+    gasMixOne->AddElement(he3, 99.*perCent);
+    gasMixOne->AddMaterial(co2, 1.*perCent);
+    
+    gasMixTwo = new G4Material("he3Gas", densityCellTwo,	2, kStateGas, temperatureCell, pressureCellTwo);
+    
+    gasMixTwo->AddElement(he3, 99.*perCent);
+    gasMixTwo->AddMaterial(co2, 1.*perCent);
+
+    gasMixThree = new G4Material("he3Gas", densityCellThree,	2, kStateGas, temperatureCell, pressureCellThree);
+    
+    gasMixThree->AddElement(he3, 99.*perCent);
+    gasMixThree->AddMaterial(co2, 1.*perCent);
+
+    gasMixFour = new G4Material("he3Gas", densityCellFour,	2, kStateGas, temperatureCell, pressureCellFour);
+    
+    gasMixFour->AddElement(he3, 99.*perCent);
+    gasMixFour->AddMaterial(co2, 1.*perCent);
 	
 	//Vaccum	
     G4double    atomicMassAir = 29.*g/mole,
@@ -191,11 +216,17 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	//Helium cells
 	solidCell = new G4Tubs("solidCell", 0., 15.5*mm, 250.*mm, 0., 360.);
 	
-	logicCell = new G4LogicalVolume(solidCell, gasMix, "logicCell");
+	logicCellOne = new G4LogicalVolume(solidCell, gasMixOne, "logicCellOne");
+    logicCellTwo = new G4LogicalVolume(solidCell, gasMixTwo, "logicCellTwo");
+    logicCellThree = new G4LogicalVolume(solidCell, gasMixThree, "logicCellThree");
+    logicCellFour = new G4LogicalVolume(solidCell, gasMixFour, "logicCellTFour");
     
-    fScoringVolume = logicCell;
+    fScoringVolumeOne = logicCellOne;
+    fScoringVolumeTwo = logicCellTwo;
+    fScoringVolumeThree = logicCellThree;
+    fScoringVolumeFour = logicCellFour;
     
-    //physCell1 = new G4PVPlacement(0, G4ThreeVector(0., 10.*cm, 0.), logicCell, "physCell1", logicMod, false, 0, true);
+    //physCell1 = new G4PVPlacement(0, G4ThreeVector(0., 10.*cm, 0.), logicCellOne, "physCell1", logicMod, false, 0, true);
     
     	//Cells physical volume
     G4int nsect1 = 6;
@@ -215,7 +246,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
         G4double sinphi = std::sin(phi);
         hex[i].set(rmax1*cosphi,rmax1*sinphi,0.);
         
-        physCell1 = new G4PVPlacement(0, hex[i], logicCell, "physCell", logicMod, false, nsect1, true);
+        physCell1 = new G4PVPlacement(0, hex[i], logicCellOne, "physCell", logicMod, false, nsect1, true);
         physCyl1 = new G4PVPlacement(0, hex[i], logicCyl, "physCyl", logicMod, false, nsect1, true);
     }
     
@@ -230,7 +261,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
         G4double sinphi = std::sin(phi);
         hex[i].set(rmax1bis*cosphi,rmax1bis*sinphi,0.);
         
-        physCell1bis = new G4PVPlacement(0, hex[i], logicCell, "physCell", logicMod, false, nsect1, true);
+        physCell1bis = new G4PVPlacement(0, hex[i], logicCellOne, "physCell", logicMod, false, nsect1, true);
         physCyl1bis = new G4PVPlacement(0, hex[i], logicCyl, "physCyl", logicMod, false, nsect1, true);
     }
     
@@ -245,7 +276,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
         G4double sinphi = std::sin(phi);
         hex[i].set(rmax2*cosphi,rmax2*sinphi,0.);
         
-        physCell2 = new G4PVPlacement(0, hex[i], logicCell, "physCell", logicMod, false, nsect1, true);
+        physCell2 = new G4PVPlacement(0, hex[i], logicCellTwo, "physCell", logicMod, false, nsect1, true);
         physCyl2 = new G4PVPlacement(0, hex[i], logicCyl, "physCyl", logicMod, false, nsect1, true);
     }
     
@@ -260,7 +291,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
         G4double sinphi = std::sin(phi);
         hex[i].set(rmax2bis*cosphi,rmax2bis*sinphi,0.);
         
-        physCell2bis = new G4PVPlacement(0, hex[i], logicCell, "physCell", logicMod, false, nsect1, true);
+        physCell2bis = new G4PVPlacement(0, hex[i], logicCellTwo, "physCell", logicMod, false, nsect1, true);
         physCyl2bis = new G4PVPlacement(0, hex[i], logicCyl, "physCyl", logicMod, false, nsect1, true);
     }
     
@@ -275,7 +306,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
         G4double sinphi = std::sin(phi);
         hex[i].set(rmax2bisbis*cosphi,rmax2bisbis*sinphi,0.);
         
-        physCell2bisbis = new G4PVPlacement(0, hex[i], logicCell, "physCell", logicMod, false, nsect1, true);
+        physCell2bisbis = new G4PVPlacement(0, hex[i], logicCellTwo, "physCell", logicMod, false, nsect1, true);
         physCyl2bisbis = new G4PVPlacement(0, hex[i], logicCyl, "physCyl", logicMod, false, nsect1, true);
     }
     
@@ -290,7 +321,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
         G4double sinphi = std::sin(phi);
         hex[i].set(rmax3*cosphi,rmax3*sinphi,0.);
         
-        physCell3 = new G4PVPlacement(0, hex[i], logicCell, "physCell", logicMod, false, nsect1, true);
+        physCell3 = new G4PVPlacement(0, hex[i], logicCellThree, "physCell", logicMod, false, nsect1, true);
         physCyl3 = new G4PVPlacement(0, hex[i], logicCyl, "physCyl", logicMod, false, nsect1, true);
     }
     
@@ -305,7 +336,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
         G4double sinphi = std::sin(phi);
         hex[i].set(rmax3bis*cosphi,rmax3bis*sinphi,0.);
         
-        physCell3bis = new G4PVPlacement(0, hex[i], logicCell, "physCell", logicMod, false, nsect1, true);
+        physCell3bis = new G4PVPlacement(0, hex[i], logicCellThree, "physCell", logicMod, false, nsect1, true);
         physCyl3bis = new G4PVPlacement(0, hex[i], logicCyl, "physCyl", logicMod, false, nsect1, true);
     }
     
@@ -320,7 +351,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
         G4double sinphi = std::sin(phi);
         hex[i].set(rmax3bisbis*cosphi,rmax3bisbis*sinphi,0.);
         
-        physCell3bisbis = new G4PVPlacement(0, hex[i], logicCell, "physCell", logicMod, false, nsect1, true);
+        physCell3bisbis = new G4PVPlacement(0, hex[i], logicCellThree, "physCell", logicMod, false, nsect1, true);
         physCyl3bisbis = new G4PVPlacement(0, hex[i], logicCyl, "physCyl", logicMod, false, nsect1, true);
     }
     
@@ -335,7 +366,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
         G4double sinphi = std::sin(phi);
         hex[i].set(rmax3bisbisbis*cosphi,rmax3bisbisbis*sinphi,0.);
         
-        physCell3bisbisbis = new G4PVPlacement(0, hex[i], logicCell, "physCell", logicMod, false, nsect1, true);
+        physCell3bisbisbis = new G4PVPlacement(0, hex[i], logicCellThree, "physCell", logicMod, false, nsect1, true);
         physCyl3bisbisbis = new G4PVPlacement(0, hex[i], logicCyl, "physCyl", logicMod, false, nsect1, true);
     }
     
@@ -350,7 +381,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
         G4double sinphi = std::sin(phi);
         hex[i].set(rmax4*cosphi,rmax4*sinphi,0.);
         
-        physCell4 = new G4PVPlacement(0, hex[i], logicCell, "physCell", logicMod, false, nsect1, true);
+        physCell4 = new G4PVPlacement(0, hex[i], logicCellFour, "physCell", logicMod, false, nsect1, true);
         physCyl4 = new G4PVPlacement(0, hex[i], logicCyl, "physCyl", logicMod, false, nsect1, true);
     }
     
@@ -365,7 +396,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
         G4double sinphi = std::sin(phi);
         hex[i].set(rmax4bis*cosphi,rmax4bis*sinphi,0.);
         
-        physCell4bis = new G4PVPlacement(0, hex[i], logicCell, "physCell", logicMod, false, nsect1, true);
+        physCell4bis = new G4PVPlacement(0, hex[i], logicCellFour, "physCell", logicMod, false, nsect1, true);
         physCyl4bis = new G4PVPlacement(0, hex[i], logicCyl, "physCyl", logicMod, false, nsect1, true);
     }
     
@@ -380,7 +411,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
         G4double sinphi = std::sin(phi);
         hex[i].set(rmax4bisbis*cosphi,rmax4bisbis*sinphi,0.);
         
-        physCell4bisbis = new G4PVPlacement(0, hex[i], logicCell, "physCell", logicMod, false, nsect1, true);
+        physCell4bisbis = new G4PVPlacement(0, hex[i], logicCellFour, "physCell", logicMod, false, nsect1, true);
         physCyl4bisbis = new G4PVPlacement(0, hex[i], logicCyl, "physCyl", logicMod, false, nsect1, true);
     }
     
@@ -395,7 +426,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
         G4double sinphi = std::sin(phi);
         hex[i].set(rmax4bisbisbis*cosphi,rmax4bisbisbis*sinphi,0.);
         
-        physCell4bisbisbis = new G4PVPlacement(0, hex[i], logicCell, "physCell", logicMod, false, nsect1, true);
+        physCell4bisbisbis = new G4PVPlacement(0, hex[i], logicCellFour, "physCell", logicMod, false, nsect1, true);
         physCyl4bisbisbis = new G4PVPlacement(0, hex[i], logicCyl, "physCyl", logicMod, false, nsect1, true);
     }
     
@@ -410,12 +441,12 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
         G4double sinphi = std::sin(phi);
         hex[i].set(rmax4bisbisbisbis*cosphi,rmax4bisbisbisbis*sinphi,0.);
         
-        physCell4bisbisbisbis = new G4PVPlacement(0, hex[i], logicCell, "physCell", logicMod, false, nsect1, true);
+        physCell4bisbisbisbis = new G4PVPlacement(0, hex[i], logicCellFour, "physCell", logicMod, false, nsect1, true);
         physCyl4bisbisbisbis = new G4PVPlacement(0, hex[i], logicCyl, "physCyl", logicMod, false, nsect1, true);
     }
     
             //Mono Cell for tests
-    /*monoCell = new G4PVPlacement(0, G4ThreeVector(0., (2.*c)*cm, 0.), logicCell, "physCell", logicMod, false, 0, true);
+    /*monoCell = new G4PVPlacement(0, G4ThreeVector(0., (2.*c)*cm, 0.), logicCellOne, "physCell", logicMod, false, 0, true);
     monoCyl = new G4PVPlacement(0, G4ThreeVector(0., (2.*c)*cm, 0.), logicCyl, "physCyl", logicMod, false, 0, true);*/
     
 	return physWorld;
