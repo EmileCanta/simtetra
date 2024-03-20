@@ -17,9 +17,6 @@ public:
     
 private:
     MyEventAction *fEventAction;
-    
-    G4int count = 1;
-    G4double time1;
 };
 
 #endif

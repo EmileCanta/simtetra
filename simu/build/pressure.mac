@@ -1,3 +1,0 @@
-/run/numberOfThreads 44
-/run/initialize
-/control/loop scandet.mac pressure 3.12075500e+08 6.24151e+09 3.12075500e+08

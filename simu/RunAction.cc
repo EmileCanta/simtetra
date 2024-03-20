@@ -12,61 +12,17 @@ MyRunAction::MyRunAction()
     man->CreateNtupleDColumn("fTime");
     man->FinishNtuple(0);
     
-    man->CreateNtuple("N1", "N1");
-    man->CreateNtupleDColumn("fEdep1");
+    man->CreateNtuple("fEdep", "fEdep");
+    man->CreateNtupleDColumn("fEdep");
     man->FinishNtuple(1);
     
     man->CreateNtuple("Rings", "Rings");
     man->CreateNtupleDColumn("RingN");
     man->FinishNtuple(2);
     
-    man->CreateNtuple("Eneut", "Eneut");
-    man->CreateNtupleDColumn("fEneut");
-    man->FinishNtuple(3);
-    
-    man->CreateNtuple("Nmulti", "Nmulti");
-    man->CreateNtupleDColumn("fNmulti");
-    man->FinishNtuple(4);
-    
-    man->CreateNtuple("N2", "N2");
-    man->CreateNtupleDColumn("fEdep2");
-    man->FinishNtuple(5);
-    
-    man->CreateNtuple("N3", "N3");
-    man->CreateNtupleDColumn("fEdep3");
-    man->FinishNtuple(6);
-    
-    man->CreateNtuple("N4", "N4");
-    man->CreateNtupleDColumn("fEdep4");
-    man->FinishNtuple(7);
-    
-    man->CreateNtuple("N5", "N5");
-    man->CreateNtupleDColumn("fEdep5");
-    man->FinishNtuple(8);
-    
-    man->CreateNtuple("N6", "N6");
-    man->CreateNtupleDColumn("fEdep6");
-    man->FinishNtuple(9);
-    
-    man->CreateNtuple("N7", "N7");
-    man->CreateNtupleDColumn("fEdep7");
-    man->FinishNtuple(10);
-    
-    man->CreateNtuple("N8", "N8");
-    man->CreateNtupleDColumn("fEdep8");
-    man->FinishNtuple(11);
-    
-    man->CreateNtuple("N9", "N9");
-    man->CreateNtupleDColumn("fEdep9");
-    man->FinishNtuple(12);
-    
-    man->CreateNtuple("N10", "N10");
-    man->CreateNtupleDColumn("fEdep10");
-    man->FinishNtuple(13);
-    
-    man->CreateNtuple("LowEvents", "LowEvents");
+    man->CreateNtuple("fEdepLow", "fEdepLow");
     man->CreateNtupleDColumn("fEdepLow");
-    man->FinishNtuple(14);
+    man->FinishNtuple(3);
     
 }
 
