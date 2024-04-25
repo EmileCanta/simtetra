@@ -34,13 +34,13 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 	G4double    pressureCellOne = 4.8*atmosphere,
                 densityCellOne = (atomicMass*pressureCellOne)/(temperatureCell*molar_constant);
 
-    G4double    pressureCellTwo = 5.58*atmosphere,
+    G4double    pressureCellTwo = 5.6*atmosphere,
                 densityCellTwo = (atomicMass*pressureCellTwo)/(temperatureCell*molar_constant);
 
-    G4double    pressureCellThree = 5.76*atmosphere,
+    G4double    pressureCellThree = 5.8*atmosphere,
                 densityCellThree = (atomicMass*pressureCellThree)/(temperatureCell*molar_constant);
 
-    G4double    pressureCellFour = 5.78*atmosphere,
+    G4double    pressureCellFour = 5.8*atmosphere,
                 densityCellFour = (atomicMass*pressureCellFour)/(temperatureCell*molar_constant);
                 
     G4Material* co2 = nist->FindOrBuildMaterial("G4_CARBON_DIOXIDE");

@@ -4,6 +4,16 @@
 
 /run/initialize
 
+/process/had/rdm/thresholdForVeryLongDecayTime 1.0e+60 year
+
+/process/had/rdm/setRadioactiveDecayFile 98 252 ../decayfolder/z98.a252
+
+/gun/particle ion
+/gun/ion 98 252
+
+# /gun/particle neutron
+# /gun/energy 1 MeV
+
 /vis/open OGL
 /vis/viewer/set/viewpointVector 0 0 0
 /vis/drawVolume
